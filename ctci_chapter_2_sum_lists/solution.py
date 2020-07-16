@@ -98,7 +98,37 @@ def sum_lists(l1, l2):
         l2 = add_zeroes(l2, leng_1-leng_2)
 
     
-    
+    stack1 = []
+    stack2 = []
+    p1 = l1 
+    p2 = l2 
+    while p1:
+        stack1.append(p1)
+        p1 = p1.next
+    while p2:
+        stack2.append(p2)
+        p2 = p2.next 
+        
+    carry =  0
+    while stack1 != [] and stack2 != []:
+        l1_val = stack1.pop()
+        l2_val = stack2.pop()
+        new_val = l1_val.val + l2_val.val  + carry 
+        if new_val >= 10:
+            carry = 1 
+            new_val = new_val % 10
+        else:
+            carry = 0
+        l1_val.val = new_val 
+        
+        
+    if carry == 1:
+        new_head = ListNode(1, l1)
+    else:
+        new_head = l1
+    return new_head
+        
+        
 
 
 
